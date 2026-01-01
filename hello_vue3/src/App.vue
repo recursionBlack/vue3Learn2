@@ -1,23 +1,19 @@
 <template>
-<!-- html -->
-  <div class='app'>
-    <h1>你好啊！</h1>
-  </div>
+  <!-- html -->
+  <Person />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 // js或ts
-  export default{
-    name:'App'  //组件名
-  }
+import Person from './components/Person.vue'
 </script>
 
 <style>
 /* 样式 */
-  .app{
-    background-color: #ddd;
-    box-shadow: 0 0 10px;
-    border-radius: 10px;
-    padding: 20px;
-  }
+.app {
+  background-color: #ddd;
+  box-shadow: 0 0 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
 </style>
