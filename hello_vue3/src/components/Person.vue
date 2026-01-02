@@ -1,6 +1,6 @@
 <template>
   <div class="person">
-    <h1>情况三：监视reactive定义的对象类型数据</h1>
+    <h1>情况五：通过数组监视以上所有数据</h1>
     <h2>姓名：{{ person.name }}</h2>
     <h2>年龄：{{ person.age }}</h2>
     <h2>汽车: {{ person.car.c1 }} 、{{ person.car.c2 }}</h2>
@@ -40,18 +40,9 @@ const changeCar = () => {
   person.car = { c1: '雅迪', c2: '爱马' }
 }
 
-// watch监视响应式对象中的某个属性，且该属性是基本类型属性，要写成函数式
-// watch(
-//   () => person.name,
-//   (newValue, oldValue) => {
-//     console.log('person变化了', newValue, oldValue)
-//   },
-// )
-
-// watch监视响应式对象中的某个属性,且该属性是对象类型的，可以直接写，也能写函数式，更推荐写函数式
-// 结论：监视的要是对象里的属性，那么最好写函数式，如果要监视成员对象的成员，要手动开启深度监视
+// watch 情况五，监视上述多个数据,用数组框住
 watch(
-  () => person.car,
+  [() => person.name, () => person.car.c1],
   (newValue, oldValue) => {
     console.log('person.car变化了', newValue, oldValue)
   },
