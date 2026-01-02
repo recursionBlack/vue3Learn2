@@ -1,51 +1,33 @@
 <template>
   <div class="person">
-    <h1>情况五：通过数组监视以上所有数据</h1>
-    <h2>姓名：{{ person.name }}</h2>
-    <h2>年龄：{{ person.age }}</h2>
-    <h2>汽车: {{ person.car.c1 }} 、{{ person.car.c2 }}</h2>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="changeC1">修改第一台车</button>
-    <button @click="changeC2">修改第一台车</button>
-    <button @click="changeCar">修改整个车</button>
+    <h2>需求：当水温达到60度或水位达到80cm时，给服务器发请求</h2>
+    <h2>当前水温：{{ temp }}°C</h2>
+    <h2>当前水位：{{ height }} cm</h2>
+    <button @click="changeTemp">点我水温+10</button>
+    <button @click="changeHeight">点我水位+10</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { watch, reactive } from 'vue'
+import { watchEffect, ref } from 'vue'
 
-let person = reactive({
-  name: '张三',
-  age: 18,
-  car: {
-    c1: '奔驰',
-    c2: '宝马',
-  },
+let temp = ref(10)
+let height = ref(0)
+
+const changeTemp = () => {
+  temp.value += 10
+}
+
+const changeHeight = () => {
+  height.value += 10
+}
+// watchEffect与watch相比，watch需要亲口告诉它，需要监视谁，
+// 而watchEffect会自动分析，回调内使用了哪些响应式，自动的进行监视
+// 防止回调的函数体过大，要监视的数据太多，手写着麻烦
+// 而且watchEffect会自动触发一次，类似于immediate
+watchEffect(() => {
+  if (temp.value > 60 || height.value > 80) {
+    console.log('给服务器自动发送请求')
+  }
 })
-
-const changeName = () => {
-  person.name += '~'
-}
-const changeAge = () => {
-  person.age += 1
-}
-const changeC1 = () => {
-  person.car.c1 = '奥迪'
-}
-const changeC2 = () => {
-  person.car.c2 = '大众'
-}
-const changeCar = () => {
-  person.car = { c1: '雅迪', c2: '爱马' }
-}
-
-// watch 情况五，监视上述多个数据,用数组框住
-watch(
-  [() => person.name, () => person.car.c1],
-  (newValue, oldValue) => {
-    console.log('person.car变化了', newValue, oldValue)
-  },
-  { deep: true },
-)
 </script>
