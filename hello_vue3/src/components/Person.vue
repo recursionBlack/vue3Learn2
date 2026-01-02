@@ -1,40 +1,27 @@
 <template>
   <div class="person">
-    姓：<input type="text" v-model="firstname" /> <br />
-    名：<input type="text" v-model="lastname" /> <br />
-    全名：<span>{{ fullname }}</span> <br />
-    <button @click="changeFullName">修改全名</button>
+    <h1>情况一：监视ref定义的基本类型</h1>
+    <h2>当前求和为：{{ sum }}</h2>
+    <button @click="changeSum">点我sum+1</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { watch, ref } from 'vue'
 
-let firstname = ref('zhang')
-let lastname = ref('san')
+let sum = ref(0)
 
-// 计算属性是有缓存的，方法是没缓存的，这就导致了，每次渲染，方法都要重新计算一遍，而计算属性则是直接取缓存，
-// 这么定义计算属性是只读的
-// let fullname = computed(() => {
-//   return firstname.value.slice(0, 1).toUpperCase() + firstname.value.slice(1) + '-' + lastname.value
-// })
-
-// 可以定义成一个可读可写的计算属性
-let fullname = computed({
-  get() {
-    return (
-      firstname.value.slice(0, 1).toUpperCase() + firstname.value.slice(1) + '-' + lastname.value
-    )
-  },
-  set(val) {
-    const [str1, str2] = val.split('-')
-    firstname.value = str1 as string
-    lastname.value = str2 as string
-  },
-})
-
-const changeFullName = () => {
-  // 计算属性也是一个响应式对象哦，其变化依赖于所用到的响应式数据
-  fullname.value = 'li-si'
+const changeSum = () => {
+  sum.value++
 }
+
+// watch ，sum不要.value
+const stopWatch = watch(sum, (newValue, oldValue) => {
+  console.log('sum变化了', newValue, oldValue)
+
+  // watch返回一个停止监视的函数
+  if (newValue > 5) {
+    stopWatch()
+  }
+})
 </script>
