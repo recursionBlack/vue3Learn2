@@ -1,24 +1,23 @@
 <template>
   <!-- html -->
-  <!-- <Person a="哈哈" :list="personList" /> -->
-  <!-- 配合子组件，不传list的情况 -->
-  <Person a="哈哈" />
+  <Person v-if="isShow" />
 </template>
 
 <script lang="ts" setup>
 // js或ts
 import Person from './components/Person.vue'
-import { reactive } from 'vue'
-import { type Persons } from '@/types'
+import { ref, onMounted } from 'vue'
 
-let personList = reactive<Persons>([
-  { id: 'adsfqwer01', name: '张三', age: 60 },
-  { id: 'adsfqwer02', name: '李四', age: 32 },
-  { id: 'adsfqwer03', name: '王五', age: 18 },
-])
+let isShow = ref(true)
+
+// 挂载完毕
+onMounted(() => {
+  console.log('父---挂载完毕hook')
+})
+// 子先解析，先挂载，等所有的子组件解析完毕后，才执行父组件的解析，所以app.vue永远是最后挂载的
 </script>
 
-<style>
+<style scoped>
 /* 样式 */
 .app {
   background-color: #ddd;

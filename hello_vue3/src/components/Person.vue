@@ -1,24 +1,57 @@
 <template>
   <div class="person">
-    <ul>
-      <li v-for="person in props.list" :key="person.id">
-        {{ person.name }}--{{ person.age }}--{{ person.id }}
-      </li>
-    </ul>
+    <h2>当前求和为：{{ sum }}</h2>
+    <button @click="add">点我sum+1</button>
   </div>
 </template>
 
 <script setup lang="ts">
-// 接收父类传来的数据，并保存到本地的props里
-// const props = defineProps(['a', 'list'])
+import {
+  ref,
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+} from 'vue'
 
-// 增加限制类型
-// import { type Persons } from '@/types'
-// const props = defineProps<{ list: Persons }>()
+let sum = ref(0)
 
-// 接收list+限制类型+限制必要性+指定默认值
-// ?可有可无，
-// 默认值问题，由于vue3.5改版后，与老师讲的不一样，故不做演示了
-import { type Persons } from '@/types'
-const props = defineProps<{ list?: Persons }>()
+const add = () => {
+  sum.value++
+}
+
+// 创建  setup
+console.log('创建hook')
+
+// 挂载前
+onBeforeMount(() => {
+  console.log('挂载前hook')
+})
+
+// 挂载完毕
+onMounted(() => {
+  console.log('子---挂载完毕hook')
+})
+
+// 更新前
+onBeforeUpdate(() => {
+  console.log('更新前hook')
+})
+
+// 更新完毕
+onUpdated(() => {
+  console.log('更新完毕hook')
+})
+
+// 卸载前
+onBeforeUnmount(() => {
+  console.log('卸载前hook')
+})
+
+// 卸载完毕
+onUnmounted(() => {
+  console.log('卸载完毕hook')
+})
 </script>
