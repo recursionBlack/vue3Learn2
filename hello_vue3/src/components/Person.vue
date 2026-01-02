@@ -1,26 +1,34 @@
 <template>
-  <div class="person">
-    <h1>中国</h1>
-    <h2 ref="title2">北京</h2>
-    <h3>尚硅谷</h3>
-    <button @click="showLog">点我输出h2这个元素</button>
-  </div>
+  <div class="person"></div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+// 导入接口必须要加个type
+// @表示根目录，src
+import { type PersonItf } from '@/types'
 
-// 创建一个title2用于存储ref标记的内容
-// 操控原生的html DOM标签
-let title2 = ref()
-
-let a = ref(0)
-let b = ref(10)
-let c = ref(77)
-
-const showLog = () => {
-  console.log(title2.value)
+let person: PersonItf = {
+  id: 'adfasaf01',
+  name: '张三',
+  age: 60,
 }
 
-defineExpose({ a, b })
+let personList: PersonItf[] = [
+  {
+    id: 'adfasaf01',
+    name: '张三',
+    age: 60,
+  },
+  {
+    id: 'adfasaf02',
+    name: '李四',
+    age: 42,
+  },
+  {
+    id: 'adfasaf03',
+    name: '王五',
+    age: 18,
+  },
+]
 </script>
