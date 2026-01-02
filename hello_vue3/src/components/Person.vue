@@ -1,57 +1,27 @@
 <template>
   <div class="person">
-    <h2>当前求和为：{{ sum }}</h2>
+    <h2>当前求和为{{ sum }}</h2>
     <button @click="add">点我sum+1</button>
+    <hr />
+    <img v-for="(dog, index) in dogList" :src="dog" :key="index" />
+    <hr />
+    <button @click="getDog">再来一只修狗</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  ref,
-  onBeforeMount,
-  onMounted,
-  onBeforeUpdate,
-  onUpdated,
-  onBeforeUnmount,
-  onUnmounted,
-} from 'vue'
+import useSum from '@/hooks/useSum'
+import useDog from '@/hooks/useDog'
 
-let sum = ref(0)
-
-const add = () => {
-  sum.value++
-}
-
-// 创建  setup
-console.log('创建hook')
-
-// 挂载前
-onBeforeMount(() => {
-  console.log('挂载前hook')
-})
-
-// 挂载完毕
-onMounted(() => {
-  console.log('子---挂载完毕hook')
-})
-
-// 更新前
-onBeforeUpdate(() => {
-  console.log('更新前hook')
-})
-
-// 更新完毕
-onUpdated(() => {
-  console.log('更新完毕hook')
-})
-
-// 卸载前
-onBeforeUnmount(() => {
-  console.log('卸载前hook')
-})
-
-// 卸载完毕
-onUnmounted(() => {
-  console.log('卸载完毕hook')
-})
+// 自定义hook的本质，就是一个一个可以调用的函数
+// 正是有了hooks，才叫组合式api
+const { sum, add } = useSum()
+const { dogList, getDog } = useDog()
 </script>
+
+<style scoped>
+.img {
+  height: 100px;
+  margin-right: 10px;
+}
+</style>
