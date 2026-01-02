@@ -1,31 +1,40 @@
 <template>
   <div class="person">
-    <h2>姓名：{{ name }}</h2>
-    <h2>年龄：{{ age }}</h2>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
+    姓：<input type="text" v-model="firstname" /> <br />
+    名：<input type="text" v-model="lastname" /> <br />
+    全名：<span>{{ fullname }}</span> <br />
+    <button @click="changeFullName">修改全名</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { toRefs, reactive } from 'vue'
+import { ref, computed } from 'vue'
 
-let person = reactive({
-  name: '张三',
-  age: 18,
+let firstname = ref('zhang')
+let lastname = ref('san')
+
+// 计算属性是有缓存的，方法是没缓存的，这就导致了，每次渲染，方法都要重新计算一遍，而计算属性则是直接取缓存，
+// 这么定义计算属性是只读的
+// let fullname = computed(() => {
+//   return firstname.value.slice(0, 1).toUpperCase() + firstname.value.slice(1) + '-' + lastname.value
+// })
+
+// 可以定义成一个可读可写的计算属性
+let fullname = computed({
+  get() {
+    return (
+      firstname.value.slice(0, 1).toUpperCase() + firstname.value.slice(1) + '-' + lastname.value
+    )
+  },
+  set(val) {
+    const [str1, str2] = val.split('-')
+    firstname.value = str1 as string
+    lastname.value = str2 as string
+  },
 })
 
-// 解构式赋值后，每个属性失去了响应式
-// let { name, age } = person
-// toRefs将每个属性都变成响应式对象了
-// 而且，name和person.name是同一个地址，类似于cpp里的引用
-let { name, age } = toRefs(person)
-
-const changeName = () => {
-  name.value = 'zhang-san'
-}
-
-const changeAge = () => {
-  age.value++
+const changeFullName = () => {
+  // 计算属性也是一个响应式对象哦，其变化依赖于所用到的响应式数据
+  fullname.value = 'li-si'
 }
 </script>
