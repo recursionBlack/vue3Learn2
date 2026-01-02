@@ -1,50 +1,31 @@
 <template>
   <div class="person">
-    <h2>一辆{{ car.brand }}车，价值：{{ car.price }}元</h2>
-    <button @click="changePrice">修改汽车的价格</button>
-    <button @click="changeBrand">修改汽车的品牌</button>
-    <button @click="changeCar">修改汽车</button>
-    <br />
-    <h2>当前求和为：{{ sum }}</h2>
-    <button @click="changeSum">点我sum+1</button>
-    <h2>游戏列表：</h2>
-    <ul>
-      <li v-for="game in games" :key="game.id">{{ game.name }}</li>
-    </ul>
-    <button @click="changeGameName">修改第一个游戏的名字</button>
+    <h2>姓名：{{ name }}</h2>
+    <h2>年龄：{{ age }}</h2>
+    <button @click="changeName">修改名字</button>
+    <button @click="changeAge">修改年龄</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { toRefs, reactive } from 'vue'
 
-let car = reactive({ brand: '奔驰', price: 100 })
-let sum = ref(0)
-let games = ref([
-  { id: '001', name: '王者荣耀' },
-  { id: '002', name: '原神' },
-  { id: '003', name: '三国杀' },
-])
+let person = reactive({
+  name: '张三',
+  age: 18,
+})
 
-const changePrice = () => {
-  car.price += 10
+// 解构式赋值后，每个属性失去了响应式
+// let { name, age } = person
+// toRefs将每个属性都变成响应式对象了
+// 而且，name和person.name是同一个地址，类似于cpp里的引用
+let { name, age } = toRefs(person)
+
+const changeName = () => {
+  name.value = 'zhang-san'
 }
 
-const changeBrand = () => {
-  car.brand = '宝马'
-}
-
-const changeCar = () => {
-  //car = { brand: '雅迪', price: 5 }
-  // reactive 的对象不能直接修改，必须要用Object.assign进行替换
-  Object.assign(car, { brand: '雅迪', price: 5 })
-}
-
-const changeGameName = () => {
-  games.value[0].name = '流星蝴蝶剑'
-}
-
-const changeSum = () => {
-  sum.value++
+const changeAge = () => {
+  age.value++
 }
 </script>
