@@ -4,3 +4,5 @@ export interface PersonItf {
   name: string
   age: number
 }
+
+export type Persons = PersonItf[]
