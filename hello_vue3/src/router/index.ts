@@ -21,7 +21,28 @@ const router = createRouter({
       name: 'xinwen',
       path: '/news',
       component: News,
-      children: [{ name: 'xiang', path: 'detail/:id/:title/:content', component: Detail }],
+      children: [
+        {
+          name: 'xiang',
+          // /:id/:title/:content：params参数的占位符，query不需要这个
+          path: 'detail/:id/:title/:content',
+          component: Detail,
+          // 第一种写法: 将路由收到的所有params参数作为props传给路由组件，props只能配合props参数
+          props: true,
+
+          // 第二种写法：函数写法，可以自己决定将什么作为props给路由组件,通常是传query参数
+          // props(route) {
+          //   return route.query
+          // },
+
+          // 第三种写法：对象写法，可以自己决定将什么作为props给路由组件,一般只能传固定参数，很少用，了解即可
+          // props: {
+          //   a: 100,
+          //   b: 200,
+          //   c: 300,
+          // },
+        },
+      ],
     },
     {
       name: 'guanyu',
