@@ -49,6 +49,10 @@ const router = createRouter({
       path: '/about',
       component: About,
     },
+    {
+      path: '/',
+      redirect: '/home', // 重定向，防止/没有路由
+    },
   ],
 })
 
