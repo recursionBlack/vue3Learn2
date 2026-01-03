@@ -21,7 +21,7 @@ const router = createRouter({
       name: 'xinwen',
       path: '/news',
       component: News,
-      children: [{ name: 'xiang', path: 'detail', component: Detail }],
+      children: [{ name: 'xiang', path: 'detail/:id/:title/:content', component: Detail }],
     },
     {
       name: 'guanyu',

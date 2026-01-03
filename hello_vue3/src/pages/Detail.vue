@@ -1,18 +1,15 @@
 <template>
   <ul class="news-list">
-    <li>编号：{{ query.id }}</li>
-    <li>标题：{{ query.title }}</li>
-    <li>内容：{{ query.content }}</li>
+    <li>编号：{{ route.params.id }}</li>
+    <li>标题：{{ route.params.title }}</li>
+    <li>内容：{{ route.params.content }}</li>
   </ul>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { toRefs } from 'vue'
 
 const route = useRoute()
-
-let { query } = toRefs(route)
 </script>
 
 <style scoped>
