@@ -3,11 +3,7 @@
     <!-- 导航区 -->
     <ul>
       <li v-for="news in newsList" :key="news.id">
-        <!-- 第一种写法 -->
-        <!-- <RouterLink :to="`/news/detail/${news.id}/${news.title}/${news.content}`"
-          >{{ news.title }}
-        </RouterLink> -->
-        <!-- 第二种写法 -->
+        <button @click="showNewsDetail(news)">查看新闻</button>
         <RouterLink
           :to="{
             name: 'xiang', // 这里不能用path了，只能用name
@@ -28,7 +24,7 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { RouterView, RouterLink } from 'vue-router'
+import { RouterView, RouterLink, useRouter } from 'vue-router'
 
 const newsList = reactive([
   {
@@ -52,6 +48,23 @@ const newsList = reactive([
     content: '快过年了',
   },
 ])
+
+const router = useRouter()
+
+// 这里的news参数是必须要加上的，否则news会爆红，因为模板里的news的作用域仅在v-for标签内
+const showNewsDetail = (news: { id: string; title: string; content: string }) => {
+  router.push(
+    // 跟RouteLink里的to写法一致，字符串或对象都可以
+    {
+      name: 'xiang',
+      params: {
+        id: news.id,
+        title: news.title,
+        content: news.content,
+      },
+    },
+  )
+}
 </script>
 
 <style scoped>
