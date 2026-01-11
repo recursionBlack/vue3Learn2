@@ -1,7 +1,7 @@
 <template>
   <div class="Sum">
-    <h2>当前求和为：{{ count }}</h2>
-    <h3>欢迎来到：{{ school }}, 坐落于：{{ address }}</h3>
+    <h2>当前求和为：{{ count }},放大十倍后：{{ bigSum }}</h2>
+    <h3>欢迎来到：{{ school }}, 坐落于：{{ address }},大写:{{ upperSchool }}</h3>
 
     <!-- .number:将收集到的东西，尽量转成数字，否则会成字符串的拼接 -->
     <select v-model.number="n">
@@ -25,7 +25,7 @@ console.log(sumStore.count)
 
 // 这里要用storeToRefs,而不要用toRefs, 前者是pinia专门写的，只将数据转为响应式
 // 后者则会将sumStore里的所有成员，尤其是方法，还有我们不关注的属性和函数，也给转成响应式的，代价很大
-const { count, school, address } = storeToRefs(sumStore)
+const { count, school, address, bigSum, upperSchool } = storeToRefs(sumStore)
 
 let n = ref(1)
 

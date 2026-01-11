@@ -14,9 +14,17 @@ export const useSumStore = defineStore('Sum', {
   // 真正存储数据的地方
   state() {
     return {
-      count: 6,
+      count: 1,
       school: 'atguigu',
       address: '洪福科技园',
     }
+  },
+  getters: {
+    bigSum(state) {
+      return state.count * 10
+    },
+    upperSchool(state) {
+      return state.school.toUpperCase()
+    },
   },
 })
