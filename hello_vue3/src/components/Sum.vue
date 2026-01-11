@@ -1,6 +1,8 @@
 <template>
   <div class="Sum">
     <h2>当前求和为：{{ sumStore.count }}</h2>
+    <h3>欢迎来到：{{ sumStore.school }}, 坐落于：{{ sumStore.address }}</h3>
+
     <!-- .number:将收集到的东西，尽量转成数字，否则会成字符串的拼接 -->
     <select v-model.number="n">
       <option value="1">1</option>
@@ -23,7 +25,18 @@ console.log(sumStore.count)
 let n = ref(1)
 
 const add = () => {
-  //   count.value += n.value
+  // 第一种修改方式
+  // sumStore.count += 1
+
+  // 第二种:批量修改
+  //   sumStore.$patch({
+  //     count: 888,
+  //     school: '尚硅谷',
+  //     address: '北京',
+  //   })
+
+  // 第三种：actions修改
+  sumStore.increment(n.value)
 }
 
 const minus = () => {
