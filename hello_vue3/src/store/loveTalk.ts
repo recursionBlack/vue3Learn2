@@ -19,11 +19,12 @@ export const useTalkStore = defineStore('Talk', {
   // 真正存储数据的地方
   state() {
     return {
-      talkList: [
-        { id: 'adafs01', title: '今天你有点怪，哪里怪？怪好看的' },
-        { id: 'adafs02', title: '草莓，蓝莓，蔓越莓，今天想我了没' },
-        { id: 'adafs03', title: '心里给你留了一块地，我的死心踏地' },
-      ],
+      //   talkList: [
+      //     { id: 'adafs01', title: '今天你有点怪，哪里怪？怪好看的' },
+      //     { id: 'adafs02', title: '草莓，蓝莓，蔓越莓，今天想我了没' },
+      //     { id: 'adafs03', title: '心里给你留了一块地，我的死心踏地' },
+      //   ],
+      talkList: JSON.parse(localStorage.getItem('talkList') as string) || [],
     }
   },
 })
