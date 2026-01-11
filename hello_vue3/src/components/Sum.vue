@@ -1,6 +1,6 @@
 <template>
   <div class="Sum">
-    <h2>当前求和为：{{ count }}</h2>
+    <h2>当前求和为：{{ sumStore.count }}</h2>
     <!-- .number:将收集到的东西，尽量转成数字，否则会成字符串的拼接 -->
     <select v-model.number="n">
       <option value="1">1</option>
@@ -14,16 +14,20 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useSumStore } from '@/store/Sum'
 
-let count = ref(1)
+const sumStore = useSumStore()
+// count 虽然是ref数据，但由于sumStore是reactive数据，会将内部的ref数据自动解包，所以获取其值就不用.value了
+console.log(sumStore.count)
+
 let n = ref(1)
 
 const add = () => {
-  count.value += n.value
+  //   count.value += n.value
 }
 
 const minus = () => {
-  count.value -= n.value
+  //   count.value -= n.value
 }
 </script>
 
