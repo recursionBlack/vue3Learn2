@@ -7,5 +7,6 @@ export default createRouter({
   routes: [
     { path: '/props', component: Props },
     { path: '/event', component: Event },
+    { path: '/event', component: Event },
   ],
 })

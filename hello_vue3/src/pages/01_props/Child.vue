@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Father">
+<script setup lang="ts" name="Child">
 import { ref } from 'vue'
 // 数据
 let toy = ref('奥特曼')
