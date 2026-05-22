@@ -1,10 +1,12 @@
 <template>
-  <input type="text" :value="modelValue" @input="emits('update:modelValue', $event.target.value)" />
+  <input type="text" :value="ming" @input="emits('update:ming', $event.target.value)" />
+  <br />
+  <input type="text" :value="mima" @input="emits('update:mima', $event.target.value)" />
 </template>
 
 <script setup lang="en" name="AtguiguInput">
-defineProps(['modelValue'])
-const emits = defineEmits(['update:modelValue'])
+defineProps(['ming', 'mima'])
+const emits = defineEmits(['update:ming', 'update:mima'])
 
 // 自己实现的组件库，通常由UI人员写。
 </script>
