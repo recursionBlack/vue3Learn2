@@ -5,13 +5,15 @@
   </div>
 </template>
 
-<script setup lang="en" name="Game">
-import {reactive} from 'vue'
+<script setup lang="ts" name="Game">
+import { reactive } from 'vue'
 
-let games = reactive([{id:'qwerasdf01', name:'英雄联盟'},
-{id:'qwerasdf02', name:'王者农药'},
-{id:'qwerasdf03', name:'红色警戒'},
-{id:'qwerasdf04', name:'斗罗大陆'}])
+let games = reactive([
+  { id: 'qwerasdf01', name: '英雄联盟' },
+  { id: 'qwerasdf02', name: '王者农药' },
+  { id: 'qwerasdf03', name: '红色警戒' },
+  { id: 'qwerasdf04', name: '斗罗大陆' },
+])
 // 数据在子组件里，但根据数据生成的结构，却由父亲决定，这就是作用域不同的问题
 // 所以要将数据，通过<slot里的参数，传递给父组件，类似于回调函数的定义，位于子组件里
 // 父组件作为回调的调用者，来使用

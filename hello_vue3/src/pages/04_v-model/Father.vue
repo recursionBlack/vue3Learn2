@@ -17,14 +17,14 @@
   </div>
 </template>
 
-<script setup lang="en" name="Father">
-import {ref} from 'vue'
+<script setup lang="ts" name="Father">
+import { ref } from 'vue'
 import AtguiguInput from './AtguiguInput.vue'
 // 数据
 let username = ref('zhangsan')
 let password = ref('123456')
 
-// $event到底是杀？？？啥时候能.target???
+// $event到底是啥？？？啥时候能.target???
 // 对于原生事件,$event就是事件对象
 // 对于自定义事件，$event就是触发事件时，所传递的数据，不能.target
 </script>

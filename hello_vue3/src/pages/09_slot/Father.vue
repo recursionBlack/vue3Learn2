@@ -28,9 +28,20 @@
   </div>
 </template>
 
-<script setup lang="en" name="Father">
-import {ref, reactive} from 'vue'
+<script setup lang="ts" name="Father">
+import { ref, reactive } from 'vue'
 import Game from './Game.vue'
+
+let games = reactive([
+  { id: 'qwerasdf01', name: '英雄联盟' },
+  { id: 'qwerasdf02', name: '王者农药' },
+  { id: 'qwerasdf03', name: '红色警戒' },
+  { id: 'qwerasdf04', name: '斗罗大陆' },
+])
+
+let imgUrl = ref('https://z1.ax1x.com/2023/11/19piNxLo4.jpg')
+
+let videoUrl = ref('http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4')
 </script>
 
 <style scoped>

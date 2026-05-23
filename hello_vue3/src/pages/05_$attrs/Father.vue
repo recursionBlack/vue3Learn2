@@ -5,21 +5,21 @@
     <h4>b:{{ b }}</h4>
     <h4>c:{{ c }}</h4>
     <h4>d:{{ d }}</h4>
-    <Child :a="a" :b="b" :c="c" :d="d" v-bind="(x:100, y:200)" :updateA="updateA" />
+    <Child :a="a" :b="b" :c="c" :d="d" v-bind="{ x: 100, y: 200 }" :updateA="updateA" />
   </div>
 </template>
 
-<script setup lang="en" name="Father">
+<script setup lang="ts" name="Father">
 import Child from './Child.vue'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 let a = ref(1)
 let b = ref(2)
 let c = ref(3)
 let d = ref(4)
 
-function updateA(value:number) {
-    a.value += value
+function updateA(value: number) {
+  a.value += value
 }
 </script>
 

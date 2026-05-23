@@ -11,32 +11,32 @@
   </div>
 </template>
 
-<script setup lang="en" name="Father">
+<script setup lang="ts" name="Father">
 import Child1 from './Child1.vue'
 import Child2 from './Child2.vue'
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 // 数据
 let house = ref(4)
-let c1 =ref()
-let c2 =ref()
+let c1 = ref()
+let c2 = ref()
 
-function changeToy(params) {
-    console.log(c1.value);
-    c1.value.toy = '小猪佩奇'
+function changeToy() {
+  console.log(c1.value)
+  c1.value.toy = '小猪佩奇'
 }
-function changeComputer(){
-    c2.value.computer = 'Mac'
+function changeComputer() {
+  c2.value.computer = 'Mac'
 }
 
-function getAllChildren(refs: any){
-    for (let key in refs) {
-        refs[key].book += 3;
-    }
+function getAllChildren(refs: any) {
+  for (let key in refs) {
+    refs[key].book += 3
+  }
 }
 
 // 向外部暴露数据
-defineExpose({house})
+defineExpose({ house })
 </script>
 
 <style scoped>

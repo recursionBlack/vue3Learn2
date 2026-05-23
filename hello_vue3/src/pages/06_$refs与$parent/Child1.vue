@@ -8,19 +8,18 @@
   </div>
 </template>
 
-<script setup lang="en" name="Child1">
-import {ref} from 'vue'
+<script setup lang="ts" name="Child1">
+import { ref } from 'vue'
 
 let toy = ref('奥特曼')
 let book = ref(3)
 
-function minusHouse(parent:any){
-parent.house -= 1;
-
+function minusHouse(parent: any) {
+  parent.house -= 1
 }
 
 // 把数据暴露给外部
-defineExpose({toy,book})
+defineExpose({ toy, book })
 </script>
 
 <style scoped>

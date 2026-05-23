@@ -1,11 +1,21 @@
 <template>
-  <input type="text" :value="ming" @input="emits('update:ming', $event.target.value)" />
+  <input
+    type="text"
+    :value="ming"
+    @input="emits('update:ming', ($event.target as HTMLInputElement).value)"
+  />
   <br />
-  <input type="text" :value="mima" @input="emits('update:mima', $event.target.value)" />
+  <input
+    type="text"
+    :value="mima"
+    @input="emits('update:mima', ($event.target as HTMLInputElement).value)"
+  />
 </template>
 
-<script setup lang="en" name="AtguiguInput">
+<script setup lang="ts" name="AtguiguInput">
 defineProps(['ming', 'mima'])
+// update:ming是个信号，这个信号比较特殊，前面的update:是固定格式，但冒号后面的就可以自行修改
+// 这就是v-model的底层原理
 const emits = defineEmits(['update:ming', 'update:mima'])
 
 // 自己实现的组件库，通常由UI人员写。

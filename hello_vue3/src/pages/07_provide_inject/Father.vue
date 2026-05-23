@@ -7,18 +7,18 @@
   </div>
 </template>
 
-<script setup lang="en" name="Father">
+<script setup lang="ts" name="Father">
 import Child from './Child.vue'
-import {ref, reactive,provide} from 'vue'
+import { ref, reactive, provide } from 'vue'
 
-let car = reactive({brand:'奔驰',price:100})
+let car = reactive({ brand: '奔驰', price: 100 })
 let money = ref(100)
-function updateMoney(value:number) {
-    money.value -= value;
+function updateMoney(value: number) {
+  money.value -= value
 }
 // 向其后代，提供数据
 // 注意传的数据不能.value,否则传的就不是ref响应式对象了。
-provide('moneyContext', {money, updateMoney})
+provide('moneyContext', { money, updateMoney })
 provide('che', car)
 </script>
 
