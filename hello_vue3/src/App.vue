@@ -11,6 +11,7 @@
         <router-link active-class="active" class="list-group-item" to="/model">4.v-model</router-link>
         <router-link active-class="active" class="list-group-item" to="/attrs">5.$attrs</router-link>
         <router-link active-class="active" class="list-group-item" to="/refs">6.$refs与$parent</router-link>
+        <router-link active-class="active" class="list-group-item" to="/provide">6.provide_inject</router-link>
       </div>
       <div class="col-xs-9 col-md-9 col-lg-9 col-xl-9">
         <div class="panel-body"">

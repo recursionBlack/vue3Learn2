@@ -5,6 +5,7 @@ import Bus from '@/pages/03_mitt/Father.vue'
 import Model from '@/pages/04_v-model/Father.vue'
 import AttrsListeners from '@/pages/05_$attrs/Father.vue'
 import RefChildrenParent from '@/pages/06_$refs与$parent/Father.vue'
+import ProvideInject from '@/pages/07_provide_inject/Father.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -15,5 +16,6 @@ export default createRouter({
     { path: '/model', component: Model },
     { path: '/attrs', component: AttrsListeners },
     { path: '/refs', component: RefChildrenParent },
+    { path: '/provide', component: ProvideInject },
   ],
 })
