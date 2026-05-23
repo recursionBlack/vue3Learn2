@@ -1,17 +1,28 @@
 <template>
-  <div class="app"></div>
+  <div class="outer">
+    <h2>我是App组件</h2>
+    <img src="http://www.atguigu.com/images/index_new/logo.png" alt="" />
+    <br />
+    <Modal />
+  </div>
 </template>
 
-<script setup lang="ts" name="App"></script>
+<script setup lang="ts" name="App">
+import Modal from './Modal.vue'
 
-<style scoped>
-.app {
+console.log(Modal)
+</script>
+
+<style>
+.outer {
   background-color: #ddd;
   border-radius: 10px;
+  padding: 5px;
   box-shadow: 0 0 10px;
-  padding: 10px;
+  width: 400px;
+  height: 400px;
 }
-button {
-  margin-right: 5px;
+img {
+  width: 180px;
 }
 </style>
