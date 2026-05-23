@@ -1,26 +1,41 @@
 <template>
   <div class="app">
-    <h2>当前sum1求和为：{{ sum1 }}</h2>
-    <h2>当前sum2求和为：{{ sum2 }}</h2>
-    <button @click="changeSum1">点我sum1+1</button>
-    <button @click="changeSum2">点我sum2+1</button>
+    <h2>姓名：{{ person.name }}</h2>
+    <h2>年龄：{{ person.age }}</h2>
+    <button @click="person.age += 1">修改年龄</button>
+    <hr />
+    <h2>{{ car2 }}</h2>
+    <button @click="changePrice">点我价格+10</button>
   </div>
 </template>
 
 <script setup lang="ts" name="App">
-import { ref, readonly, shallowReadonly } from 'vue'
+import { reactive, toRaw, markRaw } from 'vue'
+import mockjs from 'mockjs'
 
-let sum1 = ref(0)
-// readonly要求参数必须是响应式数据，不能是纯数值
-let sum2 = readonly(sum1)
+let person = reactive({ name: 'tony', age: 18 })
 
-function changeSum1() {
-  sum1.value += 1
-}
+// roRaw：用于获取 一个响应式对象的原始数据
+// 通常用于，你想修改数据，但又不想立即将变化显示到页面上的情况
+// 在需要将响应式对象传递给非vue的库，或外部系统时，使用toRaw可以保证向外传递的是普通对象
+let rawPerson = toRaw(person)
 
-function changeSum2() {
-  // 这里就无法修改了，但为了演示才这么写的
-  sum2.value += 1
+console.log('响应式数据:', person)
+console.log('原始数据:', rawPerson)
+
+// markRaw:标记一个对象，使其永远不能做成响应式的对象
+let car = markRaw({ brand: '奔驰', price: 100 })
+let car2 = reactive(car)
+
+console.log(car)
+console.log(car2)
+
+let mockJs = markRaw(mockjs)
+
+console.log(mockJs)
+
+function changePrice() {
+  car2.price += 10
 }
 </script>
 
