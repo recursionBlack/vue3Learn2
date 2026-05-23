@@ -1,62 +1,27 @@
 <template>
   <div class="app">
-    <h2>求和为：{{ sum }}</h2>
-    <h2>名字为：{{ person.name }}</h2>
-    <h2>年龄为：{{ person.age }}</h2>
-    <h2>汽车为：{{ car }}</h2>
-    <button @click="changeSum">sum+1</button>
-    <button @click="changeName">修改名字</button>
-    <button @click="changeAge">修改年龄</button>
-    <button @click="changePerson">修改整个人</button>
-    <span>|</span>
-    <button @click="changeBrand">修改品牌</button>
-    <button @click="changeColor">修改颜色</button>
-    <button @click="changeEngine">修改发送机</button>
-    <button @click="changeCar">修改整个车</button>
+    <h2>当前sum1求和为：{{ sum1 }}</h2>
+    <h2>当前sum2求和为：{{ sum2 }}</h2>
+    <button @click="changeSum1">点我sum1+1</button>
+    <button @click="changeSum2">点我sum2+1</button>
   </div>
 </template>
 
 <script setup lang="ts" name="App">
-import { ref, shallowRef, shallowReactive } from 'vue'
+import { ref, readonly, shallowReadonly } from 'vue'
 
-// 浅层次的响应式，只能处理第一层的响应式，第二层和第三层的就不好用了，changeName和changeAge就不会变了
-// 防止大对象使用ref，如果只使用表层的或者整体的替换，则可节省内存
-let sum = shallowRef(0)
-let person = shallowRef({ name: '张三', age: 18 })
+let sum1 = ref(0)
+// readonly要求参数必须是响应式数据，不能是纯数值
+let sum2 = readonly(sum1)
 
-// brand是第一层，color和engine是第二层，option也是第一层，只能改第一层
-let car = shallowReactive({ brand: '奔驰', option: { color: 'red', engine: 'V8' } })
-
-function changeSum() {
-  sum.value += 1
+function changeSum1() {
+  sum1.value += 1
 }
 
-function changeName() {
-  person.value.name = '李四'
+function changeSum2() {
+  // 这里就无法修改了，但为了演示才这么写的
+  sum2.value += 1
 }
-
-function changeAge() {
-  person.value.age = 60
-}
-
-function changePerson() {
-  person.value = { name: 'tony', age: 100 }
-}
-
-function changeBrand() {
-  car.brand = '宝马'
-}
-
-function changeColor() {
-  car.option.color = '紫色'
-}
-
-function changeEngine() {
-  car.option.engine = 'V12'
-}
-
-// reactive定义的数据，不能直接修改，要用Object.assgin
-function changeCar() {}
 </script>
 
 <style scoped>
