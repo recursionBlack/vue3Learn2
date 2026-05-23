@@ -3,6 +3,7 @@ import Props from '@/pages/01_props/Father.vue'
 import Event from '@/pages/02_custom-event/Father.vue'
 import Bus from '@/pages/03_mitt/Father.vue'
 import Model from '@/pages/04_v-model/Father.vue'
+import AttrsListeners from '@/pages/05_$attrs/Father.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -11,5 +12,6 @@ export default createRouter({
     { path: '/event', component: Event },
     { path: '/mitt', component: Bus },
     { path: '/model', component: Model },
+    { path: '/attrs', component: AttrsListeners },
   ],
 })

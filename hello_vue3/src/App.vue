@@ -9,6 +9,7 @@
         <router-link active-class="active" class="list-group-item" to="/event">2.自定义事件</router-link>
         <router-link active-class="active" class="list-group-item" to="/mitt">3.mitt</router-link>
         <router-link active-class="active" class="list-group-item" to="/model">4.v-model</router-link>
+        <router-link active-class="active" class="list-group-item" to="/attrs">5.$attrs</router-link>
       </div>
       <div class="col-xs-9 col-md-9 col-lg-9 col-xl-9">
         <div class="panel-body"">
