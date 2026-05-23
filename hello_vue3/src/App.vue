@@ -1,42 +1,19 @@
 <template>
   <div class="app">
-    <h2>姓名：{{ person.name }}</h2>
-    <h2>年龄：{{ person.age }}</h2>
-    <button @click="person.age += 1">修改年龄</button>
-    <hr />
-    <h2>{{ car2 }}</h2>
-    <button @click="changePrice">点我价格+10</button>
+    <h2>{{ msg }}</h2>
+    <input type="text" v-model="msg" />
   </div>
 </template>
 
 <script setup lang="ts" name="App">
-import { reactive, toRaw, markRaw } from 'vue'
-import mockjs from 'mockjs'
+import { reactive, customRef } from 'vue'
 
-let person = reactive({ name: 'tony', age: 18 })
+// 使用vue提供的默认ref定义响应式数据，数据一变化，界面立马更新
+// let msg = ref('你好')
+import useMsgRef from './useMsgRef'
 
-// roRaw：用于获取 一个响应式对象的原始数据
-// 通常用于，你想修改数据，但又不想立即将变化显示到页面上的情况
-// 在需要将响应式对象传递给非vue的库，或外部系统时，使用toRaw可以保证向外传递的是普通对象
-let rawPerson = toRaw(person)
-
-console.log('响应式数据:', person)
-console.log('原始数据:', rawPerson)
-
-// markRaw:标记一个对象，使其永远不能做成响应式的对象
-let car = markRaw({ brand: '奔驰', price: 100 })
-let car2 = reactive(car)
-
-console.log(car)
-console.log(car2)
-
-let mockJs = markRaw(mockjs)
-
-console.log(mockJs)
-
-function changePrice() {
-  car2.price += 10
-}
+// 使用useMsgRef来定义一个响应式数据，且有一定的延时效果
+let { msg } = useMsgRef('尚硅谷', 2000)
 </script>
 
 <style scoped>
